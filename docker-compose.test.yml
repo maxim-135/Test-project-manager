@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  test:
+    build:
+      context: .
+      dockerfile: Dockerfile.test
+    environment:
+      - DB_TYPE=test
+      - LOG_LEVEL=DEBUG
+    volumes:
+      - ./tests:/app/tests
+      - ./unified_manager:/app/unified_manager
+    command: pytest tests/ -v
